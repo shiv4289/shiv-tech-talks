@@ -27,4 +27,16 @@ A collection of my technical talks across conferences and meetups, slide decks a
 | 22  | 1st Apache Pulsar India User Meet                                               | Apache Pulsar Design Choices & use-cases                                          | [View Slides](https://github.com/shiv4289/shiv-tech-talks/blob/main/2.%20Pulsar_%20what%20we%20love%20and%20design%20patterns.pptx) | [Watch Recording](https://www.youtube.com/watch?v=AImznN3X9Os&list=PLA7KYGkuAD071myyg4X5ShsDHsOaIpHOq&index=10) | Design Choices to love in Pulsar Asrchitecture and the Trade-Offs  | 
 | 23   | SNIA Webinar                         | Navigating Transactions: ACID Complexity in Modern Databases          | [View Slides](https://www.slideshare.net/shiv4289/navigating-transactions-acid-complexity-in-modern-databases) | [Watch Recording](https://www.youtube.com/watch?v=LVibx2TtfSQ&list=PLA7KYGkuAD071myyg4X5ShsDHsOaIpHOq&index=1) | Understanding ACID properties in contemporary databases. |
 | 24   | Clickhouse India Meetup                        |  Clickhouse Bangalore meetup: Doors Open & Community syncup | N/A | [Watch Recording](https://www.youtube.com/watch?v=thu00oNq4NQ&list=PLA7KYGkuAD071myyg4X5ShsDHsOaIpHOq&index=3) | Clickhouse Community Usage Stories and Questionaire |  |
-| 25   | Clickhouse India Webinar                        |  Live Q&A Forum with Database & Cloud Experts | N/A | [Watch Recording](https://www.youtube.com/watch?v=PEFeOKlyKOQ&list=PLA7KYGkuAD071myyg4X5ShsDHsOaIpHOq&index=2) | Panelist in Clickhouse Live Webinar hosted by Clickhouse Inc for questions left from #24  |          
+| 25   | Clickhouse India Webinar                        |  Live Q&A Forum with Database & Cloud Experts | N/A | [Watch Recording](https://www.youtube.com/watch?v=PEFeOKlyKOQ&list=PLA7KYGkuAD071myyg4X5ShsDHsOaIpHOq&index=2) | Panelist in Clickhouse Live Webinar hosted by Clickhouse Inc for questions left from #24  |   
+
+# Blog Posts
+
+1. [AI Agents: The Future of SaaS Applications?](https://www.linkedin.com/pulse/my-experiments-ai-agents-shivji-kumar-jha-hgimc/)
+2. [Unified Data Platforms (ft. Postgres & Clickhouse)](https://www.linkedin.com/pulse/unified-data-platforms-ft-postgres-clickhouse-shivji-kumar-jha-jylqc/)
+3. [Streaming War and How Apache Pulsar is Acing the Battle](https://streamnative.io/blog/streaming-war-and-how-apache-pulsar-is-acing-the-battle)
+4. [Why Nutanix Beam Selected Apache Pulsar Over Apache Kafka](https://www.datastax.com/blog/why-nutanix-beam-selected-apache-pulsar-over-apache-kafka)
+5. [MySQL 5.7.6: Introducing Multi-Source Replication](https://dev.mysql.com/blog-archive/mysql-5-7-6-introducing-multi-source-replication/)
+6. [MySQL 5.7.4: Change Master Without Stopping Slave](https://dev.mysql.com/blog-archive/mysql-5-7-4-change-master-without-stopping-slave/)
+7. [MySQL 5.7.6: It Is Easier to Switch Master Now](https://dev.mysql.com/blog-archive/mysql-5-7-6-it-is-easier-to-switch-master-now/)
+8. [MySQL 5.7: Monitoring Replication with Performance Schema](https://www.shivjijha.in/2013/09/mysql-57-monitoring-replication-with.html)
+
