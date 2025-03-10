@@ -28,6 +28,7 @@ A collection of my technical talks across conferences and meetups, slide decks a
 | 23   | SNIA Webinar                         | Navigating Transactions: ACID Complexity in Modern Databases          | [View Slides](https://www.slideshare.net/shiv4289/navigating-transactions-acid-complexity-in-modern-databases) | [Watch Recording](https://www.youtube.com/watch?v=LVibx2TtfSQ&list=PLA7KYGkuAD071myyg4X5ShsDHsOaIpHOq&index=1) | Understanding ACID properties in contemporary databases. |
 | 24   | Clickhouse India Meetup                        |  Clickhouse Bangalore meetup: Doors Open & Community syncup | N/A | [Watch Recording](https://www.youtube.com/watch?v=thu00oNq4NQ&list=PLA7KYGkuAD071myyg4X5ShsDHsOaIpHOq&index=3) | Clickhouse Community Usage Stories and Questionaire |  |
 | 25   | Clickhouse India Webinar                        |  Live Q&A Forum with Database & Cloud Experts | N/A | [Watch Recording](https://www.youtube.com/watch?v=PEFeOKlyKOQ&list=PLA7KYGkuAD071myyg4X5ShsDHsOaIpHOq&index=2) | Panelist in Clickhouse Live Webinar hosted by Clickhouse Inc for questions left from #24  |   
+| 25   | PGConf India 2025                        |  Pushing PostgreSQL to the Limits: Tackling Analytics Workloads with Extensions | [View Slides](https://github.com/shiv4289/shiv-tech-talks/blob/main/PGConf2025-Shiv-Slides-3.pdf) | N/A | Run OLAP benchmarks on postgres, find issues & ideate on how to fix them. Read [Abstract](https://pgconf.in/conferences/pgconfin2025/program/proposals/931) for more details|   
 
 # Blog Posts
 
