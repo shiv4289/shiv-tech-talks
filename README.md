@@ -29,7 +29,7 @@ A collection of my technical talks across conferences and meetups, slide decks a
 | 24   | Clickhouse India Meetup                        |  Clickhouse Bangalore meetup: Doors Open & Community syncup | N/A | [Watch Recording](https://www.youtube.com/watch?v=thu00oNq4NQ&list=PLA7KYGkuAD071myyg4X5ShsDHsOaIpHOq&index=3) | Clickhouse Community Usage Stories and Questionaire |  |
 | 25   | Clickhouse India Webinar                        |  Live Q&A Forum with Database & Cloud Experts | N/A | [Watch Recording](https://www.youtube.com/watch?v=PEFeOKlyKOQ&list=PLA7KYGkuAD071myyg4X5ShsDHsOaIpHOq&index=2) | Panelist in Clickhouse Live Webinar hosted by Clickhouse Inc for questions left from #24  |   
 | 26   | PGConf India 2025                        |  Pushing PostgreSQL to the Limits: Tackling Analytics Workloads with Extensions | [View Slides](https://github.com/shiv4289/shiv-tech-talks/blob/main/PGConf2025-Shiv-Slides-3.pdf) | [Watch Recording](https://youtu.be/mug4x4pZ5mM?si=HSmv5OiNQ66dIWl1) | Run OLAP benchmarks on postgres, find issues & ideate on how to fix them. Read [Abstract](https://pgconf.in/conferences/pgconfin2025/program/proposals/931) for more details|   
-
+| 26   | [Lakehouse Days  Bengaluru](https://lu.ma/m593968s)                       |  Hacking Iceberg on Your Existing Databases | [View Slides](https://github.com/shiv4289/shiv-tech-talks/blob/main/ClickHouse_Iceberg-postgres-bonus-slides.pdf) | [Watch Recording](https://www.youtube.com/watch?v=zQAwGEiZAas) | Hacking Clickhouse & Postgres Open source code to support Iceberg Table Format 
 # Blog Posts
 
 1. [AI Agents: The Future of SaaS Applications?](https://www.linkedin.com/pulse/my-experiments-ai-agents-shivji-kumar-jha-hgimc/)
