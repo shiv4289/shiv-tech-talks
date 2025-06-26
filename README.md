@@ -1,4 +1,4 @@
-# tech-talks
+# talks
 
 A collection of my technical talks across conferences and meetups, slide decks and recordings.
 
