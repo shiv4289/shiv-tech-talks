@@ -47,3 +47,140 @@ A collection of my technical talks across conferences and meetups, slide decks a
 7. [MySQL 5.7.6: It Is Easier to Switch Master Now](https://dev.mysql.com/blog-archive/mysql-5-7-6-it-is-easier-to-switch-master-now/)
 8. [MySQL 5.7: Monitoring Replication with Performance Schema](https://www.shivjijha.in/2013/09/mysql-57-monitoring-replication-with.html)
 
+# Notable Open Source Contributions
+
+## MySQL (Oracle) — Replication & Binlog work (2012–2013)
+
+Between 2012–2013, I worked on MySQL Server at Oracle, primarily in the
+Replication and Binlog subsystems. I had **50+ changes merged upstream** during
+this period; the items below are a **small, representative subset** that
+highlights the kinds of problems I worked on and the impact of that work.
+
+### Features / Enhancements
+
+1. **Exposed replication state via Performance Schema (`SHOW SLAVE STATUS`)**  
+   This work moved replication state out of text output and into structured
+   Performance Schema tables, enabling programmatic inspection and monitoring.  
+   WorkLog: [WL#3656](https://dev.mysql.com/worklog/task/?id=3656)  
+   Commits:
+   - [Initial implementation](https://github.com/mysql/mysql-server/commit/4ea549724a43f4c6e46f835d86bc7f1404b9612b)
+   - [Stabilization and refinements](https://github.com/mysql/mysql-server/commit/aa31e7957a89402fb862a39695a6f3dc89ad91aa)
+   - [Follow-up fixes](https://github.com/mysql/mysql-server/commit/634635c15ad58841f6ec8f61863e6eb258b68f47)
+
+### Bug fixes and correctness work
+
+1. **Fixed a worker ID mismatch across replication metadata tables**  
+   Addressed inconsistencies between `SLAVE_WORKER_INFO` and
+   `REPLICATION_EXECUTE_STATUS_BY_WORKER`.  
+   [Commit](https://github.com/mysql/mysql-server/commit/41f8737a6d1134a7139a3ee30b18a3a977c53379)
+
+2. **Stabilized replication tests during InnoDB crash recovery**  
+   Fixed sporadic MTR failures that appeared under crash-recovery scenarios.  
+   [Commit](https://github.com/mysql/mysql-server/commit/19b1d0c6f0fd5c513cf93ab07028b7fbf10929ba)
+
+3. **Corrected `RESET SLAVE ALL` behavior**  
+   Ensured all connection parameters in `MASTER_INFO` are properly reset.  
+   [Commit](https://github.com/mysql/mysql-server/commit/213b64cee22aa5a1499ec57646d54e226356ae41)
+
+4. **Fixed incorrect thread ID reporting in replication Performance Schema tables**  
+   Aligned replication P_S tables with internal PFS thread identifiers.  
+   [Commit](https://github.com/mysql/mysql-server/commit/5ccaa6f02e6b6ea23dd00896e17ceb998c74f711)
+
+5. **Prevented crashes and invalid data in replication worker status tables**  
+   Fixed crashes and garbage values in `REPLICATION_EXECUTE_STATUS_BY_WORKER`.  
+   [Commit](https://github.com/mysql/mysql-server/commit/adeba76e580ead52b62f2de01d8277bdf3267deb)
+
+6. **Hardened replication Performance Schema queries**  
+   Prevented server crashes when querying replication P_S tables without
+   replication configured.  
+   [Commit](https://github.com/mysql/mysql-server/commit/90dff550e59a39640a9de95116911aa370acad29)
+
+7. **Improved `mysqlbinlog` correctness and usability**
+   - Reset byte position counters correctly when switching binlog files  
+     [Commit](https://github.com/mysql/mysql-server/commit/396990ea71f4476c5ca7c091e8a7733283bb0fef)
+   - Made `PURGE BINARY LOGS` behavior more reliable and informative  
+     [Commit](https://github.com/mysql/mysql-server/commit/31dfb55dc03d6dbd41bcf81af19d68c75e217e2c)
+   - Fixed incorrect data-type decoding and DECIMAL handling in verbose output  
+     [Commit](https://github.com/mysql/mysql-server/commit/244f1a5c702f99af0ecc2be4014f12468563f34c) ·
+     [Commit](https://github.com/mysql/mysql-server/commit/067ae29a31a6a9cef02fd3ec27875a6c2d2dc1a0)
+
+8. **Reduced flakiness in replication test suite**
+   Fixed intermittent failures in `rpl_row_until` and related tests on PB2.  
+   [Commit](https://github.com/mysql/mysql-server/commit/eb7e02e9b66101538eb3e2c94082cbeb375bf664) ·
+   [Commit](https://github.com/mysql/mysql-server/commit/5699ea1f22a6f1d260fa94d4741e9de682439dbd)
+
+9. **GTID correctness improvements**
+   - Normalized GTID UUID values for consistency  
+     [Commit](https://github.com/mysql/mysql-server/commit/127cb9b9def2a3b7edf97d480f206a5962a9c9ae)
+   - Fixed `SQL_SLAVE_SKIP_COUNTER` behavior with `GTID_MODE=ON`  
+     [Commit](https://github.com/mysql/mysql-server/commit/069ac3feafd783afb8dcfab016a83a629f7cc67b)
+
+
+## Apache Pulsar — Client, Schema, and Connector work
+
+I’ve contributed to Apache Pulsar across the Java and Python clients, schema
+handling, and the Pulsar–Flink connector. Most of my work focused on smoothing
+real-world operational edges: configuration correctness, authentication,
+schema behavior, and making failures easier to reason about.
+
+### Selected contributions
+
+1. **Made schema version information available in the Python client**  
+   Exposed the writer schema version on messages so applications can reason
+   about schema evolution at runtime instead of relying on external metadata.  
+   [PR #8173](https://github.com/apache/pulsar/pull/8173)
+
+2. **Improved schema handling around incompatible schemas**  
+   Enabled incompatible schemas to safely co-exist on a topic, unblocking
+   certain migration and multi-producer use cases.  
+   [PR #3840](https://github.com/apache/pulsar/pull/3840)
+
+3. **Hardened Avro encoding failure paths**  
+   Fixed an edge case where Avro encoding failures could leave cursors in an
+   inconsistent state, leading to hard-to-debug downstream issues.  
+   [PR #6695](https://github.com/apache/pulsar/pull/6695)
+
+4. **Simplified TLS configuration in the Java client**  
+   Made TLS usage derive automatically from the service URL protocol instead
+   of requiring explicit flags, reducing configuration foot-guns.  
+   [PR #4451](https://github.com/apache/pulsar/pull/4451)
+
+5. **Improved authentication handling in the Java client**  
+   Cleaned up how authentication is constructed from class names and parameters,
+   making client configuration more consistent and less error-prone.  
+   [PR #4381](https://github.com/apache/pulsar/pull/4381)
+
+6. **Fixed and extended authentication support in the Pulsar–Flink connector**  
+   Ensured authentication works correctly when building Flink sources and
+   allowed client auth to be configured directly from the connector layer.  
+   [PR #4284](https://github.com/apache/pulsar/pull/4284) ·
+   [PR #3949](https://github.com/apache/pulsar/pull/3949)
+
+7. **Moved Pulsar–Flink configuration to typed POJOs**  
+   Replaced loosely-typed configuration maps with explicit config objects,
+   improving validation, readability, and long-term maintainability.  
+   [PR #4232](https://github.com/apache/pulsar/pull/4232)
+
+8. **Improved error reporting for invalid client configuration**  
+   Added explicit errors for out-of-range or invalid configuration values,
+   reducing silent misconfigurations.  
+   [PR #3950](https://github.com/apache/pulsar/pull/3950)
+
+9. **Clarified and documented schema auto-update behavior**  
+   Documented the default schema auto-update strategy (`FULL`), reducing
+   surprises when teams first adopt schemas in Pulsar.  
+   [PR #3842](https://github.com/apache/pulsar/pull/3842)
+
+10. **Filled gaps in CLI and user documentation**  
+    Added missing documentation for publish-rate related CLI commands and
+    improved general project documentation.  
+    [PR #6890](https://github.com/apache/pulsar/pull/6890) ·
+    [PR #3841](https://github.com/apache/pulsar/pull/3841)
+
+### ClickHouse — Observability and performance metrics
+
+1. **Added detailed mark cache eviction metrics (evicted bytes, marks, and files)**  
+   For long-running analytical workloads, understanding cache behavior is essential.  
+   This contribution enhanced ClickHouse internals to expose evicted mark cache statistics, making it easier to reason about cache pressure and performance regressions.  
+   *Merged Pull Request:* https://github.com/clickhouse/clickhouse/pull/80799  
+   *(Fixes https://github.com/ClickHouse/ClickHouse/issues/60989)*
