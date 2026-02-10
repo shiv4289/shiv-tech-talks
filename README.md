@@ -47,9 +47,14 @@ A collection of my technical talks across conferences and meetups, slide decks a
 7. [MySQL 5.7.6: It Is Easier to Switch Master Now](https://dev.mysql.com/blog-archive/mysql-5-7-6-it-is-easier-to-switch-master-now/)
 8. [MySQL 5.7: Monitoring Replication with Performance Schema](https://www.shivjijha.in/2013/09/mysql-57-monitoring-replication-with.html)
 
-# Notable Open Source Contributions
+# Open Source Work — Databases, Messaging, and Observability
 
-## MySQL (Oracle) — Replication & Binlog work (2012–2013)
+I’ve had **70+ changes merged upstream** across major open-source systems
+including MySQL, Apache Pulsar, and ClickHouse. What follows is a curated set of
+examples that reflect the kinds of problems I’ve worked on and the impact of
+that work.
+
+## MySQL (Oracle) — Replication & Binlog work
 
 Between 2012–2013, I worked on MySQL Server at Oracle, primarily in the
 Replication and Binlog subsystems. I had **50+ changes merged upstream** during
@@ -58,14 +63,26 @@ highlights the kinds of problems I worked on and the impact of that work.
 
 ### Features / Enhancements
 
-1. **Exposed replication state via Performance Schema (`SHOW SLAVE STATUS`)**  
-   This work moved replication state out of text output and into structured
-   Performance Schema tables, enabling programmatic inspection and monitoring.  
+1. **Replication observability via Performance Schema (`SHOW SLAVE STATUS`)**  
+   This work moved replication state from ad-hoc text output into structured
+   Performance Schema tables, making it possible to monitor and reason about
+   replication programmatically.  
    WorkLog: [WL#3656](https://dev.mysql.com/worklog/task/?id=3656)  
-   Commits:
-   - [Initial implementation](https://github.com/mysql/mysql-server/commit/4ea549724a43f4c6e46f835d86bc7f1404b9612b)
-   - [Stabilization and refinements](https://github.com/mysql/mysql-server/commit/aa31e7957a89402fb862a39695a6f3dc89ad91aa)
-   - [Follow-up fixes](https://github.com/mysql/mysql-server/commit/634635c15ad58841f6ec8f61863e6eb258b68f47)
+   Key commits:
+   - [Initial Performance Schema tables for replication state](https://github.com/mysql/mysql-server/commit/0a0dcc2e30e5a1341c817f333198683363507729)
+   - [Expose `SHOW SLAVE STATUS` via Performance Schema](https://github.com/mysql/mysql-server/commit/aa31e7957a89402fb862a39695a6f3dc89ad91aa)
+   - [Follow-up fixes and stability improvements](https://github.com/mysql/mysql-server/commit/634635c15ad58841f6ec8f61863e6eb258b68f47)
+   - [Additional refinements](https://github.com/mysql/mysql-server/commit/4ea549724a43f4c6e46f835d86bc7f1404b9612b)
+
+2. **Improved replication control and operational workflows**  
+   Focused on making replication management less disruptive, particularly
+   around master changes and GTID-based setups.  
+   WorkLog: [WL#6120](https://dev.mysql.com/worklog/task/?id=6120)  
+   Key commits:
+   - [Change master without stopping the slave](https://github.com/mysql/mysql-server/commit/290b5a58b12ed13146cc602f6254d125cece8ddd)
+   - [Additional fixes and edge-case handling](https://github.com/mysql/mysql-server/commit/7f35114dbf27410ab082ac785555c7b9b5652564)
+   - [Related follow-ups improving error handling and tests](https://github.com/mysql/mysql-server/commit/8aedfc29d00ff99627a836f525cbe351807fa123)
+
 
 ### Bug fixes and correctness work
 
