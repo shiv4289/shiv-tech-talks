@@ -47,10 +47,10 @@ A collection of my technical talks across conferences and meetups, slide decks a
 7. [MySQL 5.7.6: It Is Easier to Switch Master Now](https://dev.mysql.com/blog-archive/mysql-5-7-6-it-is-easier-to-switch-master-now/)
 8. [MySQL 5.7: Monitoring Replication with Performance Schema](https://www.shivjijha.in/2013/09/mysql-57-monitoring-replication-with.html)
 
-# Open Source Work — Databases, Messaging, and Observability
+# Open Source Work — Databases, Messaging, Observability, and AI Inference
 
 I’ve had **70+ changes merged upstream** across major open-source systems
-including MySQL, Apache Pulsar, and ClickHouse. What follows is a curated set of
+including MySQL, Apache Pulsar, ClickHouse, and llm-d. What follows is a curated set of
 examples that reflect the kinds of problems I’ve worked on and the impact of
 that work.
 
@@ -201,3 +201,37 @@ schema behavior, and making failures easier to reason about.
    This contribution enhanced ClickHouse internals to expose evicted mark cache statistics, making it easier to reason about cache pressure and performance regressions.  
    *Merged Pull Request:* https://github.com/clickhouse/clickhouse/pull/80799  
    *(Fixes https://github.com/ClickHouse/ClickHouse/issues/60989)*
+
+## llm-d — Inference routing and simulation
+
+I contribute to [llm-d](https://github.com/llm-d), the Kubernetes-native
+distributed LLM inference stack, across the router (endpoint picker and P/D
+sidecar) and the inference simulator used to test it without GPUs.
+
+### llm-d-router
+
+1. **Fixed invalid JSON from chunked decode on structured-output requests**  
+   With `--decode-chunk-size` set, the sidecar split requests using
+   `response_format` or `structured_outputs` into several decode requests. vLLM
+   applies the grammar per request, so later chunks started a fresh JSON object
+   and clients got a `200` with broken JSON. Such requests now run as a single
+   decode until vLLM supports continuing a constrained assistant message.  
+   [PR #3685](https://github.com/llm-d/llm-d-router/pull/3685)
+   *(Fixes [#3642](https://github.com/llm-d/llm-d-router/issues/3642))*
+
+2. **Documented round-robin tie-breaking in `max-score-picker`**  
+   Corrected the architecture doc, which still said tied endpoints were picked
+   at random, to describe how the default picker rotates among endpoints that
+   share the top score.  
+   [PR #3635](https://github.com/llm-d/llm-d-router/pull/3635)
+
+### llm-d-inference-sim
+
+1. **Generated JSON output for `json_object` and `json_schema` response formats**  
+   The simulator returned random text even when a request asked for JSON, so
+   clients and proxies that parse or split JSON responses couldn't be tested
+   against it. It now returns a JSON object or a value generated from the
+   supplied schema, truncated at `max_tokens` with finish reason `length` as
+   vLLM does.  
+   [PR #842](https://github.com/llm-d/llm-d-inference-sim/pull/842)
+   *(Fixes [#837](https://github.com/llm-d/llm-d-inference-sim/issues/837))*
