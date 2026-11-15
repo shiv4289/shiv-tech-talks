@@ -235,3 +235,14 @@ sidecar) and the inference simulator used to test it without GPUs.
    vLLM does.  
    [PR #842](https://github.com/llm-d/llm-d-inference-sim/pull/842)
    *(Fixes [#837](https://github.com/llm-d/llm-d-inference-sim/issues/837))*
+
+## vLLM — Metrics correctness
+
+1. **Counted preemptions in the scheduler instead of on resume** *(under review)*  
+   `vllm:num_preemptions` was counted from a request's `PREEMPTED` event, which
+   only reaches the frontend with that request's next output. Requests aborted
+   while preempted were never counted, and the rest were counted late. The
+   scheduler now counts preemptions as they happen and reports them in
+   `SchedulerStats`, so the metric is accurate even under client aborts and
+   multiple API servers.  
+   [PR #65317](https://github.com/vllm-project/vllm/pull/65317)
